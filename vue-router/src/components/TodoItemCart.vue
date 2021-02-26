@@ -12,7 +12,7 @@
 
 <script>
 export default {
-  name: 'valueItem',
+  name: 'TodoItemCart',
   props: {
     value: Object
   }

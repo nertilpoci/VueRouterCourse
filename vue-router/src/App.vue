@@ -1,6 +1,6 @@
 <template>
 <div class="container-fluid p-0">
-  <nav class="navbar navbar-expand-md navbar-light bg-light">
+  <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Globomantics</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,13 +9,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+          <a @click="currentComponent='dashboard'" class="nav-link active" aria-current="page" href="javascript:;">Dashboard</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Notes</a>
+          <a @click="currentComponent='notes'" class="nav-link" href="javascript:;">Notes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Tasks</a>
+          <a @click="currentComponent='tasks'" class="nav-link" href="javascript:;">Tasks</a>
         </li>
        
       </ul>
@@ -23,25 +23,29 @@
     
   </div>
 </nav>
-<div class="row row-cols-1 row-cols-md-2 g-4 m-1">
-  <div class="col" :key="todo.id" v-for="todo in $store.getters.doneTodos" >
-  <TodoItem  :value="todo">
-       
-      </TodoItem>
+<div class='container-fluid'>
+  <component :is="currentComponent"/>
 
-
-</div>
-</div>
+  </div>
 </div>
 </template>
 
 <script>
- import TodoItem from './components/TodoItem.vue'
+ import Tasks from './components/TodoItems.vue'
+ import Dashboard from './components/Dashboard.vue'
+ import Notes from './components/Notes.vue'
 
 export default {
   name: 'App',
+  data(){
+    return{
+      currentComponent:'dashboard'
+    }
+  },
   components: {
-     TodoItem
+     Tasks,
+     Notes,
+     Dashboard
   }
 }
 </script>
