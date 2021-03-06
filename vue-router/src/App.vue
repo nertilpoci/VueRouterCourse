@@ -31,9 +31,9 @@
 </template>
 
 <script>
- import Tasks from './components/TodoItems.vue'
+ import Tasks from './components/todos/TodoItems.vue'
  import Dashboard from './components/Dashboard.vue'
- import Notes from './components/Notes.vue'
+ import Notes from './components/notes/Notes.vue'
 
 export default {
   name: 'App',

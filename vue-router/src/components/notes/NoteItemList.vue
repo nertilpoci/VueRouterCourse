@@ -5,6 +5,7 @@
       <small>{{value.createdOn}}</small>
     </div>
     <p class="mb-1">{{value.note}}</p>
+     <small class="float-end"><a  href="javascript:;" class="card-link text-danger" @click.stop="$emit('delete')"><i class="fa fa-trash"></i></a></small>
   </a>
 </template>
 
