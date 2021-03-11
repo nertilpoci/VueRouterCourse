@@ -29,6 +29,9 @@ export const store = createStore({
     allTasks(state) {
       return state.tasks
     },
+    uninishedNoteCount(state){
+      return state.notes.filter(note => !note.done).length
+    },
     unfinishedTaskCount(state) {
       return state.tasks.filter(todo => !todo.done).length
     }

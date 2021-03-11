@@ -30,10 +30,15 @@
     <div class="col-12">
       <div
         v-if="displayMode == displayModes.card"
-       class="card-columns"
+       class="row row-cols-1 row-cols-md-4 g-4 m-1"
       >
-                 <NoteItemCard @delete="deleteNote(todo.id)" @click="edit(todo.id)" :key="todo.id" v-for="todo in $store.getters.allNotes" class="m-1" :value="todo"> </NoteItemCard>
+       <div
+          class="col"
+          :key="todo.id" v-for="todo in $store.getters.allNotes"
+        >
+                 <NoteItemCard @delete="deleteNote(todo.id)" @click="edit(todo.id)"  class="m-1" :value="todo"> </NoteItemCard>
 
+      </div>
       </div>
       <div v-else class="list-group m-1 p-3">
         <NoteItemList @click="edit(todo.id)"  @delete="deleteNote(todo.id)" 
@@ -94,10 +99,5 @@ export default {
 </script>
 
 <style>
-.card{
-   break-inside: avoid!important;
-}
-.card-columns{
-  column-count: 4;
-}
+
 </style>
