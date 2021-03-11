@@ -22,7 +22,7 @@
         class="form-control"
         id="note"
         required
-        rows="10"
+        rows="5"
         v-model="note.note"
         placeholder="Enter content"
       />

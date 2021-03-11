@@ -20,11 +20,17 @@ export const store = createStore({
     notes: [
       
     ],
+    labels:[
+
+    ]
 
   },
   getters: {
     allNotes(state) {
       return state.notes
+    },
+    allLabels(state) {
+      return state.labels
     },
     allTasks(state) {
       return state.tasks
@@ -37,6 +43,31 @@ export const store = createStore({
     }
   },
   mutations: {
+    saveLabel(state,label){
+       if (label.id) {
+        let existingLabelIndex = state.labels.findIndex(z => z.id == label.id);
+        if (existingLabelIndex >= 0) {
+          state.labels.splice(existingLabelIndex, 1, label);
+          return;
+        }
+      }
+      label.id=uuidv4();
+      state.labels.push(label);
+    },
+    deleteLabel(state,id){
+       
+      //remove label from notes and tasks first
+     state.notes.filter(z=>z.labels && z.labels.includes(id)).forEach(note=>{
+       note.labels=note.labels.filter(z=>z.id!=id);
+     })
+     state.tasks.filter(z=>z.labels && z.labels.includes(id)).forEach(task=>{
+      task.labels=task.labels.filter(z=>z.id!=id);
+    })
+    let labelIndex = state.labels.findIndex(z => z.id == id);
+    if (labelIndex >= 0) {
+      state.labels.splice(labelIndex, 1);
+    }
+    },
     saveNote(state, note) {
       if (note.id) {
         let existingNoteIndex = state.notes.findIndex(z => z.id == note.id);
