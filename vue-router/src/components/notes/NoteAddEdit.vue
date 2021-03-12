@@ -27,6 +27,13 @@
         placeholder="Enter content"
       />
     </div>
+    <div class="form-group">
+    <label for="labels">Select Labels</label>
+    <select multiple class="form-control" id="labels" v-model="labelIds">
+            <option v-for="label in $store.getters.allLabels" :key="label.id" :value="label.id">{{label.title}}</option>
+
+    </select>
+  </div>
     <div class="form-check">
     <input v-model="note.done" type="checkbox" class="form-check-input" id="completed">
     <label class="form-check-label" for="completed">Completed</label>
@@ -56,6 +63,7 @@ export default {
   },
   data() {
     return {
+      labelIds:[],
       note: null,
     };
   },
@@ -68,12 +76,16 @@ export default {
       note: "",
       createdOn: new Date().toLocaleDateString(),
       done: false,
+      labels:[]
     };
+    this.labelIds=this.note.labels && this.note.labels.map(z=>z.id)
   },
   methods: {
     onSubmit(event) {
       event.preventDefault();
+      
       console.log('note',this.note)
+      this.note.labels= this.$store.getters.allLabels.filter(z=>this.labelIds.includes(z.id));
       this.$store.commit("saveNote", this.note);
       this.$emit("close");
     },

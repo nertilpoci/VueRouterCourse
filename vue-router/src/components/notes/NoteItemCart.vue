@@ -10,6 +10,10 @@
       <span v-else class="badge badge-pill badge-success bg-success">Done</span>
     <a  href="javascript:;" class="card-link text-danger float-end" @click.stop="$emit('delete')"><i class="fa fa-trash"></i></a>
   </div>
+  <div v-if="value.labels && value.labels.length>0" class="card-footer">
+  <span  v-for="label in value.labels" :key="label.id" class="m-1 badge badge-pill badge-primary bg-primary">{{label.title}}</span>
+
+  </div>
 </div>
 </template>
 

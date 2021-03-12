@@ -57,10 +57,10 @@ export const store = createStore({
     deleteLabel(state,id){
        
       //remove label from notes and tasks first
-     state.notes.filter(z=>z.labels && z.labels.includes(id)).forEach(note=>{
+     state.notes.filter(z=>z.labels && z.labels.map(l=>l.id).includes(id)).forEach(note=>{
        note.labels=note.labels.filter(z=>z.id!=id);
      })
-     state.tasks.filter(z=>z.labels && z.labels.includes(id)).forEach(task=>{
+     state.tasks.filter(z=>z.labels && z.labels.map(l=>l.id).includes(id)).forEach(task=>{
       task.labels=task.labels.filter(z=>z.id!=id);
     })
     let labelIndex = state.labels.findIndex(z => z.id == id);
