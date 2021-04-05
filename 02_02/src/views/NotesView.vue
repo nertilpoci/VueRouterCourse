@@ -1,5 +1,5 @@
 <template>
-  <div class="row g-0" v-if="!editingNote">
+  <div class="row g-0">
     <div class="col-2">
       <Labels />
     </div>
