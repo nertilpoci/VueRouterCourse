@@ -1,5 +1,8 @@
 <template>
   <div class="card">
+    <div>
+     
+    </div>
      <img class="card-img-top" src="https://i.picsum.photos/id/20/1200/300.jpg?hmac=8rrSN6gcVsYYzYJs87AlbxZVnO0M38r6eD9kKJq1P3Q" alt="Card image cap">
       <div class="card-body">
          <h5 class="card-title" >{{note.id? 'Update Note': 'Create New Note'}}</h5>
@@ -70,7 +73,14 @@ export default {
   mounted(){
   },
   created() {
-    this.note = this.value || {
+    let noteId=this.$route.params.id
+    console.log('noteid',noteId)
+    if(noteId){
+     let existingNote=this.$store.getters.allNotes.find(z=>z.id==noteId);
+     this.note= {...existingNote}//copy existing note to remove vue change tracker
+    }
+    else{
+      this.note =  {
       id: null,
       title: "",
       note: "",
@@ -78,6 +88,8 @@ export default {
       done: false,
       labels:[]
     };
+    }
+    
     this.labelIds=this.note.labels && this.note.labels.map(z=>z.id)
   },
   methods: {
