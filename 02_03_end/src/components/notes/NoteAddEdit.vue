@@ -83,10 +83,8 @@ export default {
   methods: {
     onSubmit(event) {
       event.preventDefault();
-      
-      console.log('note',this.note)
       this.note.labels= this.$store.getters.allLabels.filter(z=>this.labelIds.includes(z.id));
-      this.$store.commit("saveNote", this.note);
+      this.$store.commit("saveNote", {...this.note}); // copy before saving to remove vue change tracker
       this.$emit("close");
     },
   },

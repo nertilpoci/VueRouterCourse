@@ -18,20 +18,20 @@
         <i class="fa fa-list"></i>
       </button>
 
-      <button @click="createNote" type="button" class="float-end btn btn-link">
+      <router-link  to="/notes/new" class="float-end btn btn-link">
         <i class="fa fa-plus"></i>
-      </button>
+      </router-link>
     </div>
-    <div class="col-8">
+    <div class="col-12">
       <div
         v-if="displayMode == displayModes.card"
-        class="row row-cols-1 row-cols-md-4 g-4 m-1"
+        class="row g-0"
       >
         <div class="col" :key="todo.id" v-for="todo in $store.getters.allNotes">
           <NoteItemCard
             @delete="deleteNote(todo.id)"
             @click="edit(todo.id)"
-            class="m-1"
+            class="m-1 note-card"
             :value="todo"
           >
           </NoteItemCard>
@@ -97,5 +97,10 @@ export default {
 };
 </script>
 
-<style>
+
+
+<style scoped>
+.note-card{
+  max-width:200px
+}
 </style>
