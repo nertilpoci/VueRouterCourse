@@ -18,7 +18,7 @@
         <i class="fa fa-list"></i>
       </button>
 
-      <router-link  to="/notes/new" class="float-end btn btn-link">
+      <router-link to="/notes/new" class="float-end btn btn-link">
         <i class="fa fa-plus"></i>
       </router-link>
     </div>
