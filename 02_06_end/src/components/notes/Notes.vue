@@ -1,5 +1,5 @@
 <template>
-  <div class="row g-0" v-if="!editingNote">
+  <div class="row g-0" >
     <div class="col-12">
       <button
         v-if="displayMode != displayModes.card"
@@ -58,27 +58,20 @@
       </div>
     </div>
   </div>
-  <div class="row p-5" v-else>
-    <div class="col-12">
-      <NoteAddEdit @close="editingNote = null" :value="editingNote" />
-    </div>
-  </div>
+  
 </template>
 
 <script>
 import NoteItemCard from "./NoteItemCart.vue";
 import NoteItemList from "./NoteItemList.vue";
-import NoteAddEdit from "./NoteAddEdit.vue";
 export default {
   name: "Notes",
   components: {
     NoteItemCard,
     NoteItemList,
-    NoteAddEdit,
   },
   data() {
     return {
-      editingNote: null,
       displayModes: { card: "cards", list: "list" },
       displayMode: "cards",
     };
@@ -87,21 +80,7 @@ export default {
   methods: {
     deleteNote(id) {
       this.$store.commit("deleteNote", id);
-    },
-    edit(id) {
-      let todo = this.$store.getters.allNotes.find((z) => z.id == id);
-      this.editingNote = { ...todo }; // clone todo to avoid any reactive properties being set
-    },
-    createNote() {
-      //set editing note to an object without id and blank properties
-      this.editingNote = {
-        id: null,
-        note: "",
-        title: "",
-        createdOn: new Date().toLocaleDateString(),
-        done: false,
-      };
-    },
+    }
   },
 };
 </script>
