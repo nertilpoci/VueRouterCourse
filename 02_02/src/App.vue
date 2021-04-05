@@ -18,7 +18,7 @@
                   @click="navigate"
                   class="nav-link bg-danger"
                   :class="isActive ? 'active' : ' '"
-                > Dashboard Custom
+                > Dashboard
                 </a>
           </router-link>
         </li>

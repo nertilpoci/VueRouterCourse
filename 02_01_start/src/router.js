@@ -1,7 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
+
 import Dashboard from './components/Dashboard.vue'
 import Tasks from './components/todos/TodoItems.vue'
-import Notes from './views/NotesView.vue'
+import Notes from './components/notes/Notes.vue'
 import NotFound from './components/NotFound.vue'
 
 
