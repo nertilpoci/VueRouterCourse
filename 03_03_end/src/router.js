@@ -32,7 +32,7 @@ const router = createRouter({
         navbar: Navbar
       },
       children: [
-        { name: 'newnote', path: 'new', component: TaskAddEdit },
+        { name: 'newnote', path: 'new', component: TaskAddEdit},
         {
           name: 'editnote', path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?', component: TaskAddEdit,
           // props:true,
