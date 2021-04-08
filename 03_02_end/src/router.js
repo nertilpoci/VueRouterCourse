@@ -4,25 +4,31 @@ import Tasks from './components/todos/TodoItems.vue'
 import Notes from './views/NotesView.vue'
 import NotFound from './components/NotFound.vue'
 import TaskAddEdit from './components/notes/NoteAddEdit.vue'
-
+import {store} from './store'
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    { path: '/', component: Dashboard },
+    {
+      path: '/',
+      // redirect: '/dashboard',
+      redirect: () => {
+        return { path: store.getters.startScreen && store.getters.startScreen !='/' ? store.getters.startScreen : '/dashboard' }
+      },
+    },
     { path: '/dashboard', component: Dashboard },
     { path: '/tasks', component: Tasks },
     {
-      
       path: '/notes',
       component: Notes,
       children: [
-        { name:'newnote', path: 'new', component: TaskAddEdit },
-        { name:'editnote', path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?', component: TaskAddEdit,
-        // props:true,
-        // props:{id:''},
-        props: route => ({ id: route.params.id })
-          },
+        { path: 'new', component: TaskAddEdit },
+        {
+          path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?', component: TaskAddEdit,
+          // props:true,
+          // props:{id:''},
+          props: route => ({ id: route.params.id })
+        },
       ]
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
