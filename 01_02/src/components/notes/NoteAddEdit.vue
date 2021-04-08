@@ -78,7 +78,7 @@ export default {
       done: false,
       labels:[]
     };
-    this.labelIds=this.note.labels && this.note.labels.map(z=>z.id)
+    this.labelIds=this.note.labels && this.note.labels.map(z=>z.id) || []
   },
   methods: {
     onSubmit(event) {
