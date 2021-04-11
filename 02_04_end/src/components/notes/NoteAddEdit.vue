@@ -74,7 +74,6 @@ export default {
   },
   created() {
     let noteId=this.$route.params.id
-    console.log('noteid',noteId)
     if(noteId){
      let existingNote=this.$store.getters.allNotes.find(z=>z.id==noteId);
      this.note= {...existingNote}//copy existing note to remove vue change tracker

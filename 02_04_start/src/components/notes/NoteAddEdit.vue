@@ -70,14 +70,23 @@ export default {
   mounted(){
   },
   created() {
-    this.note = this.value || {
+   let noteId=this.$route.params.id
+
+   if(noteId){
+    let existingNote=this.$store.getters.allNotes.find(z=>z.id==noteId);
+    this.note=existingNote;
+   }
+   else{
+    this.note ={
       id: null,
       title: "",
       note: "",
       createdOn: new Date().toLocaleDateString(),
       done: false,
       labels:[]
-    };
+    }
+   }
+ 
     this.labelIds=this.note.labels && this.note.labels.map(z=>z.id)
   },
   methods: {

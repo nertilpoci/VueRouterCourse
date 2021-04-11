@@ -3,7 +3,7 @@ import Dashboard from './components/Dashboard.vue'
 import Tasks from './components/todos/TodoItems.vue'
 import Notes from './views/NotesView.vue'
 import NotFound from './components/NotFound.vue'
-import TaskAddEdit from './components/notes/NoteAddEdit.vue'
+import NoteAddEdit from './components/notes/NoteAddEdit.vue'
 
 
 const router = createRouter({
@@ -16,7 +16,8 @@ const router = createRouter({
       path: '/notes',
       component: Notes,
       children: [
-        { path: 'new', component: TaskAddEdit }
+        { path: 'new', component: NoteAddEdit },
+        {path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?', component:NoteAddEdit}
       ]
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },

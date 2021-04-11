@@ -1,5 +1,5 @@
 <template>
-  <div class="row g-0" v-if="!editingNote">
+  <div class="row g-0" >
     <div class="col-12">
       <button
         v-if="displayMode != displayModes.card"
@@ -28,48 +28,53 @@
         class="row g-0"
       >
         <div class="col" :key="todo.id" v-for="todo in $store.getters.allNotes">
+         <router-link
+            :to="'/notes/edit/' + todo.id"
+            custom
+            v-slot="{ navigate }"
+          >
           <NoteItemCard
             @delete="deleteNote(todo.id)"
-            @click="edit(todo.id)"
+            @click="navigate"
             class="m-1 note-card"
             :value="todo"
           >
           </NoteItemCard>
+         </router-link>
         </div>
       </div>
       <div v-else class="list-group m-1 p-3">
+         <router-link :key="todo.id" v-for="todo in $store.getters.allNotes"
+            :to="'/notes/edit/' + todo.id"
+            custom
+            v-slot="{ navigate }"
+          >
         <NoteItemList
-          @click="edit(todo.id)"
+          @click="navigate"
           @delete="deleteNote(todo.id)"
           class="m-2"
-          :key="todo.id"
+          
           :value="todo"
-          v-for="todo in $store.getters.allNotes"
+          
         />
+         </router-link>
       </div>
     </div>
   </div>
-  <div class="row p-5" v-else>
-    <div class="col-12">
-      <NoteAddEdit @close="editingNote = null" :value="editingNote" />
-    </div>
-  </div>
+  
 </template>
 
 <script>
 import NoteItemCard from "./NoteItemCart.vue";
 import NoteItemList from "./NoteItemList.vue";
-import NoteAddEdit from "./NoteAddEdit.vue";
 export default {
   name: "Notes",
   components: {
     NoteItemCard,
     NoteItemList,
-    NoteAddEdit,
   },
   data() {
     return {
-      editingNote: null,
       displayModes: { card: "cards", list: "list" },
       displayMode: "cards",
     };
@@ -78,21 +83,7 @@ export default {
   methods: {
     deleteNote(id) {
       this.$store.commit("deleteNote", id);
-    },
-    edit(id) {
-      let todo = this.$store.getters.allNotes.find((z) => z.id == id);
-      this.editingNote = { ...todo }; // clone todo to avoid any reactive properties being set
-    },
-    createNote() {
-      //set editing note to an object without id and blank properties
-      this.editingNote = {
-        id: null,
-        note: "",
-        title: "",
-        createdOn: new Date().toLocaleDateString(),
-        done: false,
-      };
-    },
+    }
   },
 };
 </script>
