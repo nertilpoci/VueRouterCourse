@@ -9,11 +9,11 @@ import NotFound from './components/NotFound.vue'
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-     { path: '/', component: Dashboard },         
+    {path:'/', component:Dashboard},
     { path: '/dashboard', component: Dashboard },
     { path: '/tasks', component: Tasks },
     { path: '/notes', component: Notes },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+    {path:'/:test(notes.*)', component: NotFound }
   ]
  
 })

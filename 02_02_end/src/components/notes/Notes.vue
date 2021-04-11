@@ -1,6 +1,7 @@
 <template>
   <div class="row g-0" v-if="!editingNote">
     <div class="col-12">
+     
       <button
         v-if="displayMode != displayModes.card"
         @click="displayMode = displayModes.card"
@@ -17,30 +18,30 @@
       >
         <i class="fa fa-list"></i>
       </button>
-
-      <button @click="createNote" type="button" class="float-end btn btn-link">
-        <i class="fa fa-plus"></i>
+      
+      <button
+        @click="createNote"
+        type="button"
+        class="float-end btn btn-link"
+      ><i class="fa fa-plus"></i>
       </button>
     </div>
-    <div class="col-8">
+   
+    <div class="col-12">
       <div
         v-if="displayMode == displayModes.card"
-        class="row row-cols-1 row-cols-md-4 g-4 m-1"
+       class="row row-cols-1 row-cols-md-4 g-4 m-1"
       >
-        <div class="col" :key="todo.id" v-for="todo in $store.getters.allNotes">
-          <NoteItemCard
-            @delete="deleteNote(todo.id)"
-            @click="edit(todo.id)"
-            class="m-1"
-            :value="todo"
-          >
-          </NoteItemCard>
-        </div>
+       <div
+          class="col"
+          :key="todo.id" v-for="todo in $store.getters.allNotes"
+        >
+                 <NoteItemCard @delete="deleteNote(todo.id)" @click="edit(todo.id)"  class="m-1" :value="todo"> </NoteItemCard>
+
+      </div>
       </div>
       <div v-else class="list-group m-1 p-3">
-        <NoteItemList
-          @click="edit(todo.id)"
-          @delete="deleteNote(todo.id)"
+        <NoteItemList @click="edit(todo.id)"  @delete="deleteNote(todo.id)" 
           class="m-2"
           :key="todo.id"
           :value="todo"
@@ -76,19 +77,19 @@ export default {
   },
   props: {},
   methods: {
-    deleteNote(id) {
-      this.$store.commit("deleteNote", id);
+    deleteNote(id){
+       this.$store.commit("deleteNote", id);
     },
-    edit(id) {
-      let todo = this.$store.getters.allNotes.find((z) => z.id == id);
-      this.editingNote = { ...todo }; // clone todo to avoid any reactive properties being set
+    edit(id){
+      let todo= this.$store.getters.allNotes.find(z=>z.id==id);
+      this.editingNote= { ...todo };// clone todo to avoid any reactive properties being set
     },
     createNote() {
       //set editing note to an object without id and blank properties
       this.editingNote = {
         id: null,
         note: "",
-        title: "",
+        title:'',
         createdOn: new Date().toLocaleDateString(),
         done: false,
       };
@@ -98,4 +99,5 @@ export default {
 </script>
 
 <style>
+
 </style>

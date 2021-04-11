@@ -12,13 +12,16 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/dashboard" class="nav-link">Dashboard</router-link>
+           <router-link to="/dashboard" class="nav-link active" aria-current="page"  >Dashboard
+          </router-link>
         </li>
         <li class="nav-item">
-           <router-link to="/notes" class="nav-link ">Notes</router-link>
+           <router-link to="/notes" class="nav-link active" aria-current="page"  >Notes
+          </router-link>
         </li>
         <li class="nav-item">
-           <router-link to="/tasks" class="nav-link ">Tasks</router-link>
+           <router-link to="/tasks" class="nav-link active" aria-current="page"  >Tasks
+          </router-link>
         </li>
        
       </ul>
@@ -40,7 +43,7 @@ export default {
   name: 'App',
   data(){
     return{
-      currentComponent:'dashboard'
+     
     }
   },
   components: {

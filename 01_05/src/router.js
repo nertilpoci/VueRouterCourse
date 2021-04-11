@@ -13,7 +13,7 @@ const router = createRouter({
     { path: '/dashboard', component: Dashboard },
     { path: '/tasks', component: Tasks },
     { path: '/notes', component: Notes },
-    { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
+    { path: '/:pathMatch(.*)*',  component: NotFound },
   ],
   linkActiveClass: "active",
   linkExactActiveClass: "active"

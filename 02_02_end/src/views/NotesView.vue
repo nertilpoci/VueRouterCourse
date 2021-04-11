@@ -1,5 +1,5 @@
 <template>
-  <div class="row g-0">
+    <div class="row g-0">
     <div class="col-2">
       <Labels />
     </div>
@@ -12,9 +12,9 @@
 import Notes from "../components/notes/Notes.vue";
 import Labels from "../components/labels/LabelList";
 export default {
-  components: {
-    Notes,
-    Labels,
-  },
-};
+    components:{
+        Notes,
+        Labels
+    }
+}
 </script>

@@ -12,14 +12,13 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <router-link to="/dashboard" class="nav-link" custom v-slot="{ isActive, href, navigate }">
-          <a
-                  :href="href"
+          <router-link to="/dashboard" custom class="nav-link" v-slot="{ isActive, navigate }" >
+           <button 
                   @click="navigate"
                   class="nav-link bg-danger"
                   :class="isActive ? 'active' : ' '"
-                > Dashboard Custom
-                </a>
+                > Dashboard
+           </button>
           </router-link>
         </li>
         <li class="nav-item">
