@@ -3,6 +3,7 @@ import Dashboard from './components/Dashboard.vue'
 import Tasks from './components/todos/TodoItems.vue'
 import Notes from './views/NotesView.vue'
 import NotFound from './components/NotFound.vue'
+import NoteAddEdit from './components/notes/NoteAddEdit.vue'
 
 
 const router = createRouter({
@@ -11,7 +12,11 @@ const router = createRouter({
      { path: '/', component: Dashboard },         
     { path: '/dashboard', component: Dashboard },
     { path: '/tasks', component: Tasks },
-    { path: '/notes', component: Notes },
+    { path: '/notes', component: Notes,
+     children: [
+        { path: 'new', component: NoteAddEdit }
+      ]
+  },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },
   ],
   linkActiveClass: "active",
