@@ -17,7 +17,10 @@ const router = createRouter({
       component: Notes,
       children: [
         { path: 'new', component: TaskAddEdit },
-        { path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?', component: TaskAddEdit },
+        { path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?',
+         component: TaskAddEdit,
+         props: route => ({ id: route.params.id })
+        },
       ]
     },
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: NotFound },

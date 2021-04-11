@@ -62,7 +62,10 @@ export default {
   components:{
   },
   props: {
-   
+   id:{
+     type:String,
+     default:''
+   }
   },
   data() {
     return {
@@ -73,7 +76,7 @@ export default {
   mounted(){
   },
   watch: {
-    $route(){
+    id(){
      this.initializeNote()
     }
   },
@@ -83,7 +86,7 @@ export default {
   },
   methods: {
     initializeNote(){
-    let noteId=this.$route.params.id
+    let noteId=this.id
     if(noteId){
      let existingNote=this.$store.getters.allNotes.find(z=>z.id==noteId);
      this.note= {...existingNote}//copy existing note to remove vue change tracker
