@@ -1,21 +1,9 @@
 <template>
   <transition
-    v-if="name == 'bounce-left'"
-    enter-active-class="animate__animated animate__bounceInRight"
+    :enter-active-class="enterActiveClass"
     leave-active-class=""
     :mode="mode"
   >
-    <slot></slot>
-  </transition>
-  <transition
-    v-else-if="name == 'bounce-right'"
-    enter-active-class="animate__animated animate__bounceInLeft"
-    leave-active-class=""
-   :mode="mode"
-  >
-    <slot></slot>
-  </transition>
-  <transition  :mode="mode" v-else> 
     <slot></slot>
   </transition>
 </template>
@@ -30,7 +18,24 @@ export default {
     mode: {
       type: String,
       default: "out-in",
-    }
+    },
+  },
+  computed: {
+    enterActiveClass() {
+      console.log("name", this.name);
+      switch (this.name) {
+        case "bounce-left":
+          return "animate__animated animate__bounceInRight";
+        case "bounce-right":
+          return "animate__animated animate__bounceInLeft";
+        case "bounce-down":
+          return "animate__animated animate__bounceInDown";
+        case "zoom-down":
+          return "animate__animated animate__zoomInDown";
+        default:
+          return "";
+      }
+    },
   },
 };
 </script>
