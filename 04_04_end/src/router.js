@@ -34,15 +34,15 @@ const router = createRouter({
           path: 'new',
           name: 'newnote',
           component: NoteAddEdit,
-          meta: {
-            onClose: () => router.push({ name: 'notes' })
-          }
+          meta:{
+            onClose:()=>{ router.push({name:'notes'})}
+          },
         },
         {
-          name: 'editnote',
-          meta: {
-            onClose: () => router.push({ name: 'notes' })
+          meta:{
+            onClose:()=>{ router.push({name:'notes'})}
           },
+          name: 'editnote',
           path: 'edit/:id([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})?',
           component: NoteAddEdit,
           props: route => ({ id: route.params.id })
