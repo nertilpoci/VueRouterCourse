@@ -61,7 +61,6 @@
             {{ note.id ? "Update" : "Create" }}
           </button>
           <button type="button" class="btn btn-danger" @click="$emit('close')">Cancel</button>
-          <!-- <button style="position:absolute;top:0;right:0;font-size:40px" class="btn btn-link" @click="$emit('close')"><i class="fa fa-times-circle"></i></button> -->
         </div>
       </form>
     </div>
