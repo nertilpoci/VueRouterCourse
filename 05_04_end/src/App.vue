@@ -4,7 +4,7 @@
 
     <div class="container-fluid">
       <router-view v-slot="{ Component,route }">
-        <AnimatedTransition mode="out-in" :name="route.meta.transition" >
+        <AnimatedTransition  :name="route.meta.transition" >
           <component  :is="Component" />
         </AnimatedTransition>
       </router-view>

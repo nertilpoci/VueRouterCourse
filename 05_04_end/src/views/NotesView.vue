@@ -10,8 +10,8 @@
           <Notes />
        </div>
         <div class="col child-outlet">
-          <router-view v-slot="{ Component,route }">
-        <AnimatedTransition mode="out-in" :name="route.meta.transition" >
+         <router-view v-slot="{ Component,route }">
+        <AnimatedTransition  :name="route.meta.transition" >
           <component  :is="Component" />
         </AnimatedTransition>
       </router-view>
@@ -24,6 +24,7 @@
 import Notes from "../components/notes/Notes.vue";
 import Labels from "../components/labels/LabelList";
 import AnimatedTransition from '../components/transitions/AnimatedTransition.vue'
+
 export default {
   components: {
     Notes,

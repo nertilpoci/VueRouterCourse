@@ -62,18 +62,23 @@ const router = createRouter({
   linkActiveClass: "active",
   linkExactActiveClass: "active",
   scrollBehavior(to, from, savedPosition) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(savedPosition||  { left: 0, top: 0 })
-      }, 1000)
-    })
-  },
+    console.log('to',to)
+    console.log('from',from)
+    console.log('savedPosition',savedPosition)
+     
+   return new Promise((resolve, reject) => {
+    setTimeout(() => {
+     resolve( savedPosition||  { left: 0, top: 0 })
+    }, 1000)
+  })
 
+  },
+  
 })
 router.afterEach((to, from) => {
-  const toDepth = to.path.split('/').length
-  const fromDepth = from.path.split('/').length
-  to.meta.transition = toDepth <= fromDepth ? 'bounce-right' : 'bounce-left'
+  console.log('to',to)
+  console.log('from',from)
+  to.meta.transition = to.matched.length==1 ? 'bounce-right' : 'bounce-left'
 })
 
 export default router

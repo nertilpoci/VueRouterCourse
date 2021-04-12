@@ -16,11 +16,16 @@ const router = createRouter({
         return { path: store.getters.startScreen }
       },
     },
-    { path: '/dashboard', name: 'dashboard', component: Dashboard },
     {
-      meta: {
-        transition: 'zoom-down'
-      },
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard,
+      meta:{
+        transition:'zoom-down'
+      }
+    },
+    {
+
       path: '/tasks', name: 'tasks', components: {
         default: Tasks,
         Navbar: NavbarComponent
@@ -28,9 +33,7 @@ const router = createRouter({
     },
     {
       path: '/notes', name: 'notes',
-      meta: {
-        transition: 'bounce-left'
-      },
+
       components: {
         default: Notes,
         Navbar: NavbarComponent

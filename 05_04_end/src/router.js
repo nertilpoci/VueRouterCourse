@@ -62,9 +62,9 @@ const router = createRouter({
 
 })
 router.afterEach((to, from) => {
-  const toDepth = to.path.split('/').length
-  const fromDepth = from.path.split('/').length
-  to.meta.transition = toDepth <= fromDepth ? 'bounce-right' : 'bounce-left'
+  console.log('to',to)
+  console.log('from',from)
+  to.meta.transition = to.matched.length==1 ? 'bounce-right' : 'bounce-left'
 })
 
 export default router

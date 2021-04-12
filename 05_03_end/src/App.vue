@@ -3,9 +3,9 @@
     <router-view name="Navbar"></router-view>
 
     <div class="container-fluid">
-      <router-view v-slot="{ Component,route }">
-        <AnimatedTransition mode="out-in" :name="route.meta.transition" >
-          <component  :is="Component" />
+      <router-view v-slot="{ Component, route }">
+        <AnimatedTransition  :name="route.meta.transition || 'bounce-right'"  >
+          <component  :is="Component"  />
         </AnimatedTransition>
       </router-view>
     </div>
