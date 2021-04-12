@@ -1,6 +1,5 @@
 <template>
 <div>
-    abc
     <NoteAddEdit v-bind="$props" @close="navigateBack"/>
     </div>
 </template>
