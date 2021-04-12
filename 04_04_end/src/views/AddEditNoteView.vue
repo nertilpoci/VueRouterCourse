@@ -19,8 +19,9 @@ export default {
     },
     methods:{
         navigateBack(){
-            //  router.go(-1)
-            router.back();
+            console.log('curentroute', router.currentRoute.value)
+            router.currentRoute.value.meta.onClose();
+            // router.push({name:router.currentRoute.value.meta.onCloseRedirect})
         }
     }
 }
