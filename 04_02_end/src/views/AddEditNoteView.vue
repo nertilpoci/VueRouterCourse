@@ -1,7 +1,5 @@
 <template>
-<div>
-    <NoteAddEdit v-bind="$props" @close="navigateBack"/>
-    </div>
+    <NoteAddEdit v-bind="$props" @close="navigateBack" />
 </template>
 <script>
 import router from '../router'
@@ -17,10 +15,9 @@ export default {
         }
     },
     methods:{
-        navigateBack(){
-            //  router.go(-1)
-            router.back();
-        }
+         navigateBack() {
+         router.go(-1)
+    }
     }
 }
 </script>
