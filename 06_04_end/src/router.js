@@ -9,6 +9,7 @@ import NotFound from './components/NotFound.vue'
 import NoteAddEdit from './views/AddEditNoteView.vue'
 import { store } from './store'
 import NavbarComponent from './components/navigation/Navbar.vue'
+import Login from './components/auth/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,9 +21,10 @@ const router = createRouter({
       },
     },
     { path: '/dashboard', name: 'dashboard', component: Dashboard },
+    { path: '/login', name: 'login', component: Login },
     {
       meta: {
-        title: "Globomantics: Tasks",
+        title:"Globomantics: Notes",
         transition: 'bounce-right'
       },
       path: '/tasks', name: 'tasks', components: {
@@ -34,7 +36,8 @@ const router = createRouter({
 
       path: '/notes', name: 'notes',
       meta: {
-        title: "Globomantics: Notes",
+        title:"Globomantics: Notes",
+        requiresAuth:true,
         transition: 'bounce-right'
       },
       components: {
@@ -82,25 +85,27 @@ const router = createRouter({
 })
 router.beforeEach((to, from) => {
   console.log('Before Each(Global)')
- 
+  if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
+    return { name: 'login' }
+  }
 })
 router.beforeResolve(async (to, from) => {
   console.log('Before Resolve (Global)')
   //ask for microphone:
-  if (to.meta.requiresMic) {
+  if(to.meta.requiresMic){
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true })
     }
     catch (err) {
       alert('Cannot proceed without allowing access to mic. Enable access and reload the page')
       return false
-
+  
     }
   }
 })
 router.afterEach((to, from) => {
   console.log('After Each (Global)')
-  document.title = to.meta.title || "Globomantics"
+  document.title=to.meta.title || "Globomantics"
   to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
 })
 
