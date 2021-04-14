@@ -22,6 +22,7 @@ const router = createRouter({
     { path: '/dashboard', name: 'dashboard', component: Dashboard },
     {
       meta: {
+        title:"Globomantics: Tasks",
         transition: 'bounce-right'
       },
       path: '/tasks', name: 'tasks', components: {
@@ -33,6 +34,7 @@ const router = createRouter({
 
       path: '/notes', name: 'notes',
       meta: {
+        title:"Globomantics: Notes",
         transition: 'bounce-right'
       },
       components: {
@@ -97,6 +99,7 @@ router.beforeResolve(async (to, from) => {
 })
 router.afterEach((to, from) => {
   console.log('After Each (Global)')
+  document.title=to.meta.title || "Globomantics"
   to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
 })
 

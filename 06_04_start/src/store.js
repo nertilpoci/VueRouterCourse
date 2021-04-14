@@ -15,6 +15,7 @@ export const store = createStore({
   plugins: [vuexPersist.plugin],
   state: {
     startScreen:'',
+    isLoggedIn:false,
     tasks: [
      
     ],
@@ -27,6 +28,9 @@ export const store = createStore({
 
   },
   getters: {
+    isLoggedIn(state){
+      return state.isLoggedIn
+    },
     startScreen(state){
     return state.startScreen
     },
@@ -47,6 +51,9 @@ export const store = createStore({
     }
   },
   mutations: {
+    isLoggedIn(state,value){
+      state.isLoggedIn=value;
+    },
     startScreen(state,value){
       state.startScreen=value;
      

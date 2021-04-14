@@ -9,6 +9,7 @@ import NotFound from './components/NotFound.vue'
 import NoteAddEdit from './views/AddEditNoteView.vue'
 import { store } from './store'
 import NavbarComponent from './components/navigation/Navbar.vue'
+import Login from './components/auth/Login.vue'
 
 const router = createRouter({
   history: createWebHistory(),
@@ -20,8 +21,10 @@ const router = createRouter({
       },
     },
     { path: '/dashboard', name: 'dashboard', component: Dashboard },
+    { path: '/login', name: 'login', component: Login },
     {
       meta: {
+        title:"Globomantics: Notes",
         transition: 'bounce-right'
       },
       path: '/tasks', name: 'tasks', components: {
@@ -33,6 +36,7 @@ const router = createRouter({
 
       path: '/notes', name: 'notes',
       meta: {
+        title:"Globomantics: Notes",
         transition: 'bounce-right'
       },
       components: {
@@ -97,6 +101,7 @@ router.beforeResolve(async (to, from) => {
 })
 router.afterEach((to, from) => {
   console.log('After Each (Global)')
+  document.title=to.meta.title || "Globomantics"
   to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
 })
 
