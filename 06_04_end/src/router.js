@@ -21,10 +21,12 @@ const router = createRouter({
       },
     },
     { path: '/dashboard', name: 'dashboard', component: Dashboard },
+   
     { path: '/login', name: 'login', component: Login },
+   
     {
       meta: {
-        title:"Globomantics: Notes",
+        title:"Tasks",
         transition: 'bounce-right'
       },
       path: '/tasks', name: 'tasks', components: {
@@ -36,7 +38,8 @@ const router = createRouter({
 
       path: '/notes', name: 'notes',
       meta: {
-        title:"Globomantics: Notes",
+        title:"Notes",
+        requiresMic:true,
         requiresAuth:true,
         transition: 'bounce-right'
       },
@@ -88,6 +91,7 @@ router.beforeEach((to, from) => {
   if (to.meta.requiresAuth && !store.getters.isLoggedIn) {
     return { name: 'login' }
   }
+  
 })
 router.beforeResolve(async (to, from) => {
   console.log('Before Resolve (Global)')
@@ -105,7 +109,7 @@ router.beforeResolve(async (to, from) => {
 })
 router.afterEach((to, from) => {
   console.log('After Each (Global)')
-  document.title=to.meta.title || "Globomantics"
+  document.title="Globomantics" + to.meta.title 
   to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
 })
 
