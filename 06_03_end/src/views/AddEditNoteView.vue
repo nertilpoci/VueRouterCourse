@@ -19,25 +19,25 @@ export default {
   },
   beforeRouteEnter(to, from, next) {
     console.log("Before Notes Edit Entered (In-Component)");
-    //component specific checks
-    next((vm) => {
-      //set component properties
-    });
-  },
-  beforeRouteUpdate(to, from) {
-    // has access to component
-    console.log("Before Notes Edit Updated (In-Component)");
-    //    this.id=to.params.id
+    next(vm=>{
+      //change component properties
+    })
   },
   beforeRouteLeave() {
     console.log("Before Notes Edit Leave (In-Component)");
-    //check if it has unsaved changes
+    
+     //check if it has unsaved changes
     if (this.$refs.noteeditor.hasChanges()) {
       const discardChanges = window.confirm(
         "Do you really want to leave? You have some changes that you havent saved yet"
       );
       if (!discardChanges) return false;
     }
+  },
+   beforeRouteUpdate(to, from) { 
+    
+    console.log("Before Notes Edit Updated (In-Component)"); 
+     
   },
   methods: {
     navigateBack() {

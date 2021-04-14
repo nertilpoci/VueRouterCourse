@@ -123,6 +123,7 @@ export default {
       this.note.labels = this.$store.getters.allLabels.filter((z) =>
         this.labelIds.includes(z.id)
       );
+       this.originalValue = { ...this.note };
       this.$store.commit("saveNote", { ...this.note }); // copy before saving to remove vue change tracker
       this.$emit("close");
     },

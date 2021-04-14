@@ -60,7 +60,9 @@
           <button type="submit" class="btn btn-primary m-1">
             {{ note.id ? "Update" : "Create" }}
           </button>
-          <button type="button" class="btn btn-danger" @click="$emit('close')">Cancel</button>
+          <button type="button" class="btn btn-danger" @click="$emit('close')">
+            Cancel
+          </button>
           <!-- <button style="position:absolute;top:0;right:0;font-size:40px" class="btn btn-link" @click="$emit('close')"><i class="fa fa-times-circle"></i></button> -->
         </div>
       </form>
@@ -82,6 +84,7 @@ export default {
     return {
       labelIds: [],
       note: null,
+      originalValue: null,
     };
   },
   mounted() {},
@@ -113,14 +116,23 @@ export default {
       }
 
       this.labelIds = this.note.labels && this.note.labels.map((z) => z.id);
+      this.originalValue = { ...this.note };
     },
     onSubmit(event) {
       event.preventDefault();
       this.note.labels = this.$store.getters.allLabels.filter((z) =>
         this.labelIds.includes(z.id)
       );
+       this.originalValue = { ...this.note };
       this.$store.commit("saveNote", { ...this.note }); // copy before saving to remove vue change tracker
       this.$emit("close");
+    },
+    hasChanges() {
+      //For demo purposes only. Checks only title and note doesn't check labels
+      return (
+        this.originalValue.title != this.note.title ||
+        this.originalValue.note != this.note.note
+      );
     },
   },
 };

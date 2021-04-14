@@ -19,11 +19,14 @@ const router = createRouter({
         return { path: store.getters.startScreen || 'dashboard' }
       },
     },
-    { path: '/dashboard', name: 'dashboard', component: Dashboard },
+    { path: '/dashboard', name: 'dashboard', component: Dashboard, 
+     meta: {
+      title: 'Dashboard',
+    } },
     {
       meta: {
-        title: "Globomantics: Tasks",
-        transition: 'bounce-right'
+        transition: 'bounce-right',
+        title: 'Tasks'
       },
       path: '/tasks', name: 'tasks', components: {
         default: Tasks,
@@ -31,10 +34,11 @@ const router = createRouter({
       }
     },
     {
-
+   
       path: '/notes', name: 'notes',
       meta: {
-        title: "Globomantics: Notes",
+        title: 'Note',
+        requiresMic:true,
         transition: 'bounce-right'
       },
       components: {
@@ -85,8 +89,7 @@ router.beforeEach((to, from) => {
  
 })
 router.beforeResolve(async (to, from) => {
-  console.log('Before Resolve (Global)')
-  //ask for microphone:
+  console.log('Before Resolve (Global)') 
   if (to.meta.requiresMic) {
     try {
       await navigator.mediaDevices.getUserMedia({ audio: true })
@@ -100,7 +103,7 @@ router.beforeResolve(async (to, from) => {
 })
 router.afterEach((to, from) => {
   console.log('After Each (Global)')
-  document.title = to.meta.title || "Globomantics"
+  document.title= "Globomantics: " + to.meta.title;
   to.meta.transition = to.matched.length == 1 ? 'bounce-right' : 'bounce-left'
 })
 

@@ -12,8 +12,7 @@ const router = createRouter({
     {
       path: '/',
       redirect: (to) => {
-        console.log("Redirect from ", to)
-        return { path: store.getters.startScreen }
+        return { path: store.getters.startScreen || 'dashboard' }
       },
     },
     { path: '/dashboard', name: 'dashboard', component: Dashboard },
