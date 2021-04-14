@@ -4,13 +4,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { store } from './store'
 
+
 const Dashboard = () => import( './components/Dashboard.vue')
 const Tasks = () => import( './components/todos/TodoItems.vue')
 const Notes = () => import( './views/NotesView.vue')
 const NotFound = () => import( './components/NotFound.vue')
 const NoteAddEdit = () => import( './views/AddEditNoteView.vue')
-const NavbarComponent = () => import( /* webpackPrefetch: true */ './components/navigation/Navbar.vue')
+const NavbarComponent = () => import('./components/navigation/Navbar.vue')
 const Login = () => import('./components/auth/Login.vue')
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
