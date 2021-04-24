@@ -42,7 +42,7 @@ export default {
   name: 'App',
   data(){
     return{
-      currentComponent:'notes'
+      currentComponent:'dashboard'
     }
   },
   components: {
