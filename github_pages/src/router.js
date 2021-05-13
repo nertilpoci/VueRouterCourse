@@ -14,7 +14,7 @@ const NavbarComponent = () => import('./components/navigation/Navbar.vue')
 const Login = () => import('./components/auth/Login.vue')
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('VueRouterCourse'),
   routes: [
     {
       path: '/',
